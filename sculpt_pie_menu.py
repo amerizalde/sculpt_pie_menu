@@ -15,6 +15,19 @@ bl_info = {
 
 addon_keymaps = []
 
+
+class AddonPreferences(bpy.types.AddonPreferences):
+    bl_idname = __name__
+    pie_style = bpy.props.BoolProperty(
+        name = "Use Pie Style Menu",
+        description = "Toggle between a Pie menu and a 'Standard' popup menu",
+        default = True)
+    
+    def draw(self, context):
+        layout = self.layout
+        layout.prop(self, "pie_style")
+
+
 class SculptingBrushSelector(Operator):
     """Update the current sculpting brush with the selected brush"""
     bl_idname = "alm.sculpt_brush_select"
@@ -64,16 +77,33 @@ class SculptingPieMenu(Menu):
         pie.operator_enum("alm.sculpt_brush_select", "selected_mode")
 
 
+class SculptingFloatingMenu(Menu):
+    bl_idname = "alm.sculpt_floating_menu"
+    bl_label = "Select Sculpt Brush"
+    
+    def draw(self, context):
+        layout = self.layout
+        
+        row = layout.row()
+        row.operator_menu_enum("alm.sculpt_brush_select", "selected_mode")
+        
+
+        
 class SculptingMenuCaller(Operator):
     """An operator for keymapping the menu"""
     bl_idname = "alm.sculpt_menu_call"
     bl_label = "Open Sculpt Pie Menu"
 
     def execute(self, context):
-        bpy.ops.wm.call_menu_pie(name="alm.sculpt_pie_menu")
+        if __name__ != '__main__':
+            addon_prefs = context.user_preferences.addons[__name__].preferences
+            if addon_prefs.pie_style:
+                bpy.ops.wm.call_menu_pie(name="alm.sculpt_pie_menu")
+            else:
+                bpy.ops.wm.call_menu(name="alm.sculpt_floating_menu")
         return {'FINISHED'}
 
-classes = [SculptingBrushSelector, SculptingPieMenu, SculptingMenuCaller]
+classes = [AddonPreferences, SculptingBrushSelector, SculptingPieMenu, SculptingFloatingMenu, SculptingMenuCaller]
 
 def register():
     # add operator
