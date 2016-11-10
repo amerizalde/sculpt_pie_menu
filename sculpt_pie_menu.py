@@ -4,12 +4,12 @@ from bpy.types import Menu, Operator
 
 bl_info = {
     "name": "Sculpting Brushes",
-    "author": "Andrew Merizalde",
+    "author": "Andrew Merizalde <andrewmerizalde@hotmail.com>",
     "version": (1, 0, 0),
     "blender": (2, 7, 8),
     "location": "Viewport",
     "description": "Spacebar to access sculpting brushes pie menu.",
-    "wiki_url": "",
+    "wiki_url": "https://github.com/amerizalde/sculpt_pie_menu",
     "tracker_url": "",
     "category": "Pie Menu"}
 
@@ -25,23 +25,23 @@ class SculptingBrushSelector(Operator):
     ### When an item only contains 4 items they define (identifier, name, description, number).
     # Tricky...
     mode_options = [
-        ("Clay Strips", "Clay Strips", "Clay Strips"),
-        ("Crease", "Crease", "Crease"),
-        ("Grab", "Grab", "Grab"),
-        ("Draw", "Sculpt Draw", "Sculpt Draw"),
-        ("Scrape/Peaks", "Scrape/Peaks", "Scrape/Peaks"),
-        ("Clay", "Clay", "Clay"),
-        ("Flatten/Contrast", "Flatten/Contrast", "Flatten/Contrast"),
-        ("Snake Hook", "Snake Hook", "Snake Hook"),
-        ("Inflate/Deflate", "Inflate/Deflate", "Inflate/Deflate"),
-        ("Mask", "Mask", "Mask"),
-        ("Fill/Deepen", "Fill/Deepen", "Fill/Deepen"),
-        ("Blob", "Blob", "Blob"),
-        ("Layer", "Layer", "Layer"),
-        ("Smooth", "Smooth", "Smooth"),
-        ("Thumb", "Thumb", "Thumb"),
-        ("Nudge", "Nudge", "Nudge"),
-        ("Pinch/Magnify", "Pinch/Magnify", "Pinch/Magnify")]
+        ("Clay Strips", "Clay Strips", "Clay Strips", "BRUSH_CLAY", 0),
+        ("Crease", "Crease", "Crease", "BRUSH_CREASE", 1),
+        ("Grab", "Grab", "Grab", "BRUSH_GRAB", 2),
+        ("Draw", "Sculpt Draw", "Sculpt Draw", "BRUSH_SCULPT_DRAW", 3),
+        ("Scrape/Peaks", "Scrape/Peaks", "Scrape/Peaks", "BRUSH_SCRAPE", 4),
+        ("Clay", "Clay", "Clay", "BRUSH_CLAY", 5),
+        ("Flatten/Contrast", "Flatten/Contrast", "Flatten/Contrast", "BRUSH_FLATTEN", 6),
+        ("Snake Hook", "Snake Hook", "Snake Hook", "BRUSH_SNAKE_HOOK", 7),
+        ("Inflate/Deflate", "Inflate/Deflate", "Inflate/Deflate", "BRUSH_INFLATE", 8),
+        ("Mask", "Mask", "Mask", "BRUSH_MASK", 9),
+        ("Fill/Deepen", "Fill/Deepen", "Fill/Deepen", "BRUSH_FILL", 10),
+        ("Blob", "Blob", "Blob", "BRUSH_BLOB", 11),
+        ("Layer", "Layer", "Layer", "BRUSH_LAYER", 12),
+        ("Smooth", "Smooth", "Smooth", "BRUSH_SMOOTH", 13),
+        ("Thumb", "Thumb", "Thumb", "BRUSH_THUMB", 14),
+        ("Nudge", "Nudge", "Nudge", "BRUSH_NUDGE", 15),
+        ("Pinch/Magnify", "Pinch/Magnify", "Pinch/Magnify", "BRUSH_PINCH", 16)]
 
     selected_mode = bpy.props.EnumProperty(
             items=mode_options,
