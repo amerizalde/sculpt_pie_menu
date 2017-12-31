@@ -114,7 +114,7 @@ def register():
     kcfg = bpy.context.window_manager.keyconfigs.addon
     if kcfg:
         km = kcfg.keymaps.new(name='Sculpt', space_type='EMPTY')
-        kmi = km.keymap_items.new("alm.sculpt_menu_call", 'SPACE', 'PRESS')
+        kmi = km.keymap_items.new("alm.sculpt_menu_call", 'W', 'PRESS')
         addon_keymaps.append((km, kmi))
 
 def unregister():
