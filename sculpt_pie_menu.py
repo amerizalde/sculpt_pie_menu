@@ -54,7 +54,8 @@ class SculptingBrushSelector(Operator):
         ("Smooth", "Smooth", "Smooth", "BRUSH_SMOOTH", 13),
         ("Thumb", "Thumb", "Thumb", "BRUSH_THUMB", 14),
         ("Nudge", "Nudge", "Nudge", "BRUSH_NUDGE", 15),
-        ("Pinch/Magnify", "Pinch/Magnify", "Pinch/Magnify", "BRUSH_PINCH", 16)]
+        ("Pinch/Magnify", "Pinch/Magnify", "Pinch/Magnify", "BRUSH_PINCH", 16),
+        ("Rotate", "Rotate", "Rotate", "BRUSH_ROTATE", 17)]
 
     selected_mode = bpy.props.EnumProperty(
             items=mode_options,
